@@ -25,3 +25,31 @@ const exampleObj = {
     prop1: 'test',
     prop2: true
 };
+exampleObj.prop1 = 'john';
+let evh = {
+    name: 'Eddie',
+    active: false,
+    albums: ['Van Halen I', 'Van Halen II', 5150]
+};
+let JP = {
+    name: 'Jimmy',
+    active: true,
+    albums: ['IV', 'Houses of the Holy', 'Physical Graffiti']
+};
+const greetGuitarist = (guitarist) => {
+    if (guitarist.name) {
+        return `Hello ${guitarist.name.toUpperCase()}`;
+    }
+    return 'Hello';
+};
+console.log(greetGuitarist(JP));
+// enums
+var Grade;
+(function (Grade) {
+    Grade[Grade["U"] = 1] = "U";
+    Grade[Grade["D"] = 2] = "D";
+    Grade[Grade["C"] = 3] = "C";
+    Grade[Grade["B"] = 4] = "B";
+    Grade[Grade["A"] = 5] = "A";
+})(Grade || (Grade = {}));
+console.log(Grade.C);
