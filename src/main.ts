@@ -63,14 +63,11 @@ logMsg(sumAll(undefined, 3));
 const total = (...nums: number[]): number => {
   return nums.reduce((prev, curr) => prev + curr);
 }
-
-
-logMsg(total(1, 2, 3, 4));
+logMsg(total(1, 2, 3, 11));
 
 const createError = (errMsg: string): never => {
   throw new Error(errMsg);
 }
-
 
 
 

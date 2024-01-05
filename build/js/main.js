@@ -39,7 +39,7 @@ logMsg(sumAll(undefined, 3));
 const total = (...nums) => {
     return nums.reduce((prev, curr) => prev + curr);
 };
-logMsg(total(1, 2, 3, 4));
+logMsg(total(1, 2, 3, 11));
 const createError = (errMsg) => {
     throw new Error(errMsg);
 };
