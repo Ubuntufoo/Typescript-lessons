@@ -1,82 +1,75 @@
-let stringArr = ['one', 'hey', 'Tim']
+// type Aliases are a name that we can use to refer to a type set
 
-let guitars = ['Strat', 'Les Paul', 5150]
+type stringOrNumber = string | number;
 
-let mixedData = ['EVH', 1984, true]
-
-stringArr[0] = 'John'
-stringArr.push('Paul')
-
-guitars[0] = 1984
-guitars.unshift('Jim')
-
-guitars = stringArr
-mixedData = guitars
-
-let test = []
-let bands: string[] = []
-bands.push('Van Halen')
-
-// tuple
-let myTuple: [string, number, boolean] = ['Dave', 42, true]
-
-let mixed = ['John', 1, false]
-
-myTuple[1] = 42
-
-// Objects
-let myObj: object
-myObj = []
-console.log(typeof myObj)
-myObj = bands
-myObj = {}
-
-const exampleObj = {
-  prop1: 'test',
-  prop2: true
-}
-
-exampleObj.prop1 = 'john'
+type stringOrNumberArray = (string | number)[];
 
 interface Guitarist {
   name?: string,
   active: boolean,
-  albums: (string | number)[],
+  albums: stringOrNumberArray
 }
 
-let evh: Guitarist = {
-  name: 'Eddie',
-  active: false,
-  albums: ['Van Halen I', 'Van Halen II', 5150]
-}
-let JP: Guitarist = {
-  name: 'Jimmy',
-  active: true,
-  albums: ['IV', 'Houses of the Holy', 'Physical Graffiti']
+type userId = stringOrNumber;
+
+// literal names
+let myName: 'Jesse';
+
+let userName: 'Dave' | 'John' | 'Amy'
+userName = "Amy"
+
+// functions
+const add = (a: number, b: number): number => a + b;
+
+const logMsg = (message: any): void => {
+  console.log(message);
 }
 
-const greetGuitarist = (guitarist: Guitarist) => {
-  if (guitarist.name) {
-    return `Hello ${guitarist.name.toUpperCase()}`
+logMsg('Hello World');
+logMsg(add(5, 5));
+
+let subtract = function (c: number, d: number): number {
+  return c - d;
+}
+
+type mathFunction = (a: number, b: number) => number;
+// interface mathFunction {
+//   (a: number, b: number) : number
+// }
+
+let multiply: mathFunction = function (c, d) {
+  return c * d;
+}
+logMsg(multiply(5, 5));
+
+// optional parameters
+const addAll = (a: number, b: number, c?: number): number => {
+  if (typeof c !== 'undefined') {
+    return a + b + c;
   }
-  return 'Hello'
+  return a + b;
 }
 
-console.log(greetGuitarist(JP))
-
-// enums
-enum Grade {
-  U = 1,
-  D,
-  C,
-  B,
-  A,
+//default param value
+const sumAll = (a: number = 10, b: number, c: number = 2): number => {
+  return a + b + c
 }
 
-console.log(Grade.C)
+logMsg(addAll(2, 3, 2));
+logMsg(addAll(2, 3));
+logMsg(sumAll(undefined, 3));
+
+// rest parameters
+const total = (...nums: number[]): number => {
+  return nums.reduce((prev, curr) => prev + curr);
+}
 
 
+logMsg(total(1, 2, 3, 4));
 
+const createError = (errMsg: string): never => {
+  throw new Error(errMsg);
+}
 
 
 

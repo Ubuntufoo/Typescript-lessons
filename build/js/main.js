@@ -1,55 +1,45 @@
 "use strict";
-let stringArr = ['one', 'hey', 'Tim'];
-let guitars = ['Strat', 'Les Paul', 5150];
-let mixedData = ['EVH', 1984, true];
-stringArr[0] = 'John';
-stringArr.push('Paul');
-guitars[0] = 1984;
-guitars.unshift('Jim');
-guitars = stringArr;
-mixedData = guitars;
-let test = [];
-let bands = [];
-bands.push('Van Halen');
-// tuple
-let myTuple = ['Dave', 42, true];
-let mixed = ['John', 1, false];
-myTuple[1] = 42;
-// Objects
-let myObj;
-myObj = [];
-console.log(typeof myObj);
-myObj = bands;
-myObj = {};
-const exampleObj = {
-    prop1: 'test',
-    prop2: true
+// type Aliases are a name that we can use to refer to a type set
+// literal names
+let myName;
+let userName;
+userName = "Amy";
+// functions
+const add = (a, b) => a + b;
+const logMsg = (message) => {
+    console.log(message);
 };
-exampleObj.prop1 = 'john';
-let evh = {
-    name: 'Eddie',
-    active: false,
-    albums: ['Van Halen I', 'Van Halen II', 5150]
+logMsg('Hello World');
+logMsg(add(5, 5));
+let subtract = function (c, d) {
+    return c - d;
 };
-let JP = {
-    name: 'Jimmy',
-    active: true,
-    albums: ['IV', 'Houses of the Holy', 'Physical Graffiti']
+// interface mathFunction {
+//   (a: number, b: number) : number
+// }
+let multiply = function (c, d) {
+    return c * d;
 };
-const greetGuitarist = (guitarist) => {
-    if (guitarist.name) {
-        return `Hello ${guitarist.name.toUpperCase()}`;
+logMsg(multiply(5, 5));
+// optional parameters
+const addAll = (a, b, c) => {
+    if (typeof c !== 'undefined') {
+        return a + b + c;
     }
-    return 'Hello';
+    return a + b;
 };
-console.log(greetGuitarist(JP));
-// enums
-var Grade;
-(function (Grade) {
-    Grade[Grade["U"] = 1] = "U";
-    Grade[Grade["D"] = 2] = "D";
-    Grade[Grade["C"] = 3] = "C";
-    Grade[Grade["B"] = 4] = "B";
-    Grade[Grade["A"] = 5] = "A";
-})(Grade || (Grade = {}));
-console.log(Grade.C);
+//default param value
+const sumAll = (a = 10, b, c = 2) => {
+    return a + b + c;
+};
+logMsg(addAll(2, 3, 2));
+logMsg(addAll(2, 3));
+logMsg(sumAll(undefined, 3));
+// rest parameters
+const total = (...nums) => {
+    return nums.reduce((prev, curr) => prev + curr);
+};
+logMsg(total(1, 2, 3, 4));
+const createError = (errMsg) => {
+    throw new Error(errMsg);
+};
