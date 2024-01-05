@@ -1,78 +1,21 @@
-// type Aliases are a name that we can use to refer to a type set
+type One = string;
+type Two = string | number;
+type Three = 'hello'
 
-type stringOrNumber = string | number;
+// convert to more or less specific
+let a: One = 'hello';
+let b = a as Two // assignment to less specific type
+let c = a as Three // assignment more specific type
 
-type stringOrNumberArray = (string | number)[];
+let d = <One> 'world' // assignment to less specific type
+let e = <string | number>'world' // assignment to less specific type
 
-interface Guitarist {
-  name?: string,
-  active: boolean,
-  albums: stringOrNumberArray
-}
-
-type userId = stringOrNumber;
-
-// literal names
-let myName: 'Jesse';
-
-let userName: 'Dave' | 'John' | 'Amy'
-userName = "Amy"
-
-// functions
-const add = (a: number, b: number): number => a + b;
-
-const logMsg = (message: any): void => {
-  console.log(message);
-}
-
-logMsg('Hello World');
-logMsg(add(5, 5));
-
-let subtract = function (c: number, d: number): number {
-  return c - d;
-}
-
-type mathFunction = (a: number, b: number) => number;
-// interface mathFunction {
-//   (a: number, b: number) : number
-// }
-
-let multiply: mathFunction = function (c, d) {
-  return c * d;
-}
-logMsg(multiply(5, 5));
-
-// optional parameters
-const addAll = (a: number, b: number, c?: number): number => {
-  if (typeof c !== 'undefined') {
-    return a + b + c;
+const addOrConcat = (a: number, b: number, c: 'add' | 'concat'): number | string => {
+  if (c === 'add') {
+    return a + b;
+  } else {
+    return `${a}${b}`;
   }
-  return a + b;
 }
 
-//default param value
-const sumAll = (a: number = 10, b: number, c: number = 2): number => {
-  return a + b + c
-}
-
-logMsg(addAll(2, 3, 2));
-logMsg(addAll(2, 3));
-logMsg(sumAll(undefined, 3));
-
-// rest parameters
-const total = (...nums: number[]): number => {
-  return nums.reduce((prev, curr) => prev + curr);
-}
-logMsg(total(1, 2, 3, 11));
-
-const createError = (errMsg: string): never => {
-  throw new Error(errMsg);
-}
-
-
-
-
-
-
-
-
+let myVal: string = addOrConcat(1, 2, 'concat') as string;
