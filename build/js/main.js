@@ -1,16 +1,30 @@
 "use strict";
-// convert to more or less specific
-let a = 'hello';
-let b = a; // assignment to less specific type
-let c = a; // assignment more specific type
-let d = 'world'; // assignment to less specific type
-let e = 'world'; // assignment to less specific type
-const addOrConcat = (a, b, c) => {
-    if (c === 'add') {
-        return a + b;
+class Coder {
+    constructor(name, music, age, lang = 'Typescript') {
+        this.name = name;
+        this.music = music;
+        this.age = age;
+        this.lang = lang;
+        this.name = name;
+        this.music = music;
+        this.age = age;
+        this.lang = lang;
     }
-    else {
-        return `${a}${b}`;
+    getAge() {
+        return `Hello, I'm ${this.age} years old.`;
     }
-};
-let myVal = addOrConcat(1, 2, 'concat');
+}
+const Dave = new Coder('Dave', 'Rock', 42);
+console.log(Dave.getAge());
+class webDev extends Coder {
+    constructor(computer, name, music, age) {
+        super(name, music, age);
+        this.computer = computer;
+    }
+    getLang() {
+        return `My favorite language is ${this.lang}`;
+    }
+}
+const Sarah = new webDev('Mac', 'Sarah', 'Pop', 28);
+console.log(Sarah.getLang());
+console.log(Sarah.age);

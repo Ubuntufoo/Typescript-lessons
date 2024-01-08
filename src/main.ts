@@ -1,21 +1,36 @@
-type One = string;
-type Two = string | number;
-type Three = 'hello'
+class Coder {
 
-// convert to more or less specific
-let a: One = 'hello';
-let b = a as Two // assignment to less specific type
-let c = a as Three // assignment more specific type
+  secondLang!: string
 
-let d = <One> 'world' // assignment to less specific type
-let e = <string | number>'world' // assignment to less specific type
+  constructor(
+    public readonly name: string,
+    public music: string,
+    private age: number,
+    protected lang: string = 'Typescript'
+  ) {
+    this.name = name;
+    this.music = music;
+    this.age = age;
+    this.lang = lang;
+  }
 
-const addOrConcat = (a: number, b: number, c: 'add' | 'concat'): number | string => {
-  if (c === 'add') {
-    return a + b;
-  } else {
-    return `${a}${b}`;
+  public getAge() {
+    return `Hello, I'm ${this.age} years old.`
   }
 }
+const Dave = new Coder('Dave', 'Rock', 42)
 
-let myVal: string = addOrConcat(1, 2, 'concat') as string;
+console.log(Dave.getAge())
+
+class webDev extends Coder {
+  constructor(public computer: string, name: string, music: string, age: number) {
+    super(name, music, age)
+  }
+
+  public getLang() {
+    return `My favorite language is ${this.lang}`
+  }
+}
+const Sarah = new webDev('Mac', 'Sarah', 'Pop', 28)
+console.log(Sarah.getLang());
+console.log(Sarah.age);
